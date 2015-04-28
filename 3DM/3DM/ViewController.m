@@ -120,6 +120,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [av show];
+        [self performSelector:@selector(doneWithView:) withObject:_header afterDelay:0.0];
     }];
 }
 
