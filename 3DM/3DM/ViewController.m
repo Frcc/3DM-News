@@ -156,6 +156,8 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"qw.png"] style:UIBarButtonItemStyleDone target:nil action:nil];
+    [self.navigationItem setBackBarButtonItem:backItem];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dic = [dataArr objectAtIndex:indexPath.row];
     transUrl = [dic objectForKey:@"url"];

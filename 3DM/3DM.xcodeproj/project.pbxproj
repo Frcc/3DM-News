@@ -34,6 +34,7 @@
 		EB4417161AEF60F200E06419 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4417151AEF60F200E06419 /* CoreText.framework */; };
 		EB4417181AEF72AC00E06419 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4417171AEF72AC00E06419 /* SDWebImage.framework */; };
 		EB44171A1AEF739D00E06419 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4417191AEF739D00E06419 /* ImageIO.framework */; };
+		EB44171C1AEF953200E06419 /* qw.png in Resources */ = {isa = PBXBuildFile; fileRef = EB44171B1AEF953200E06419 /* qw.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		EB4417151AEF60F200E06419 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		EB4417171AEF72AC00E06419 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		EB4417191AEF739D00E06419 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		EB44171B1AEF953200E06419 /* qw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qw.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				EB4416BE1AEF1A8C00E06419 /* AppDelegate.m */,
 				EB4416C01AEF1A8C00E06419 /* ViewController.h */,
 				EB4416C11AEF1A8C00E06419 /* ViewController.m */,
+				EB44171B1AEF953200E06419 /* qw.png */,
 				EB4416C31AEF1A8C00E06419 /* Main.storyboard */,
 				EB4416C61AEF1A8C00E06419 /* Images.xcassets */,
 				EB4416C81AEF1A8C00E06419 /* LaunchScreen.xib */,
@@ -333,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB4416C51AEF1A8C00E06419 /* Main.storyboard in Resources */,
+				EB44171C1AEF953200E06419 /* qw.png in Resources */,
 				EB4417031AEF43F800E06419 /* TableViewCell.xib in Resources */,
 				EB4416CA1AEF1A8C00E06419 /* LaunchScreen.xib in Resources */,
 				EB4416FA1AEF411500E06419 /* MJRefresh.bundle in Resources */,
