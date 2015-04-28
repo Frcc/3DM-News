@@ -11,6 +11,7 @@
 #import "TFHpple.h"
 #import "M80AttributedLabel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "myImv.h"
 
 @interface detailViewController (){
     NSMutableArray *txtData;
@@ -23,6 +24,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
+    [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;  
     
     txtData = [NSMutableArray array];
     
@@ -44,7 +50,6 @@ static UIAlertView *av=nil;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];//<div class="miaoshu"> <div class="h3ke con">
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject) {
-        NSLog(@"%@",[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
         NSArray *elements = [doc searchWithXPathQuery:@"//div[contains(@class,'con')]//div[2]"];//<div id="previous"
         
@@ -60,13 +65,17 @@ static UIAlertView *av=nil;
                     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
                     [dic setObject:eee.content forKey:@"text"];
                     if ([eee.attributes objectForKey:@"src"]) {
-                        [dic setObject:[eee.attributes objectForKey:@"src"] forKey:@"imageurl"];
+                        NSString *ul = [eee.attributes objectForKey:@"src"];
+                        ul = [ul stringByReplacingCharactersInRange:NSMakeRange(7, 6) withString:@""];
+                        [dic setObject:ul forKey:@"imageurl"];
                     }
                     [txtData addObject:dic];
                     for (TFHppleElement *eeee in eee.children) {
                         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
                         if ([eeee.attributes objectForKey:@"src"]) {
-                            [dic setObject:[eeee.attributes objectForKey:@"src"] forKey:@"imageurl"];
+                            NSString *ul = [eeee.attributes objectForKey:@"src"];
+                            ul = [ul stringByReplacingCharactersInRange:NSMakeRange(7, 6) withString:@""];
+                            [dic setObject:ul forKey:@"imageurl"];
                         }
                         [txtData addObject:dic];
                     }
@@ -95,8 +104,16 @@ static UIAlertView *av=nil;
     }
 }
 
+- (void)viewWillLayoutSubviews{
+    
+}
+
+- (void)viewDidLayoutSubviews{
+    
+}
+
 - (void)showTxt{
-    M80AttributedLabel *label = [[M80AttributedLabel alloc]initWithFrame:self.view.bounds];
+    M80AttributedLabel *label = [[M80AttributedLabel alloc]initWithFrame:[UIScreen mainScreen].bounds];
     label.lineSpacing = 5.0;
     label.textColor = [UIColor blackColor];
     label.backgroundColor = [UIColor whiteColor];
@@ -109,12 +126,12 @@ static UIAlertView *av=nil;
         if ([imageurl containsString:@"swf"]) {
             NSArray *arr = [imageurl componentsSeparatedByString:@"/"];
             NSString *str = [arr objectAtIndex:arr.count-2];
-            NSString *url = [NSString stringWithFormat:@"<iframe height=320 width=320 src=\"http://player.youku.com/embed/%@\" frameborder=0 allowfullscreen></iframe>",str];
+            NSString *url = [NSString stringWithFormat:@"<iframe height=280 width=280 src=\"http://player.youku.com/embed/%@\" frameborder=0 allowfullscreen></iframe>",str];
             if ([imageurl containsString:@"tudou"]) {
                 str = [arr objectAtIndex:4];
-                 url = [NSString stringWithFormat:@"<iframe src=\"http://www.tudou.com/programs/view/html5embed.action?type=2&code=%@&lcode=%@&resourceId=45565876_04_05_99\" allowtransparency=\"true\" allowfullscreen=\"true\" allowfullscreenInteractive=\"true\" scrolling=\"no\" border=\"0\" frameborder=\"0\" style=\"width:320px;height:320px;\"></iframe>",str,str];
+                 url = [NSString stringWithFormat:@"<iframe src=\"http://www.tudou.com/programs/view/html5embed.action?type=2&code=%@&lcode=%@&resourceId=45565876_04_05_99\" allowtransparency=\"true\" allowfullscreen=\"true\" allowfullscreenInteractive=\"true\" scrolling=\"no\" border=\"0\" frameborder=\"0\" style=\"width:280px;height:280px;\"></iframe>",str,str];
             }
-            UIWebView *wv = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+            UIWebView *wv = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 280, 280)];
             [wv loadHTMLString:url baseURL:nil];
             [wv setScalesPageToFit:YES];
             [label appendView:wv margin:UIEdgeInsetsMake(0, 0, 0, 0) alignment:M80ImageAlignmentCenter];
@@ -123,7 +140,7 @@ static UIAlertView *av=nil;
         }
         [label appendText:text];
         if (imageurl) {
-            UIImageView *imv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+            myImv *imv = [[myImv alloc] initWithFrame:CGRectMake(0, 0, 280, 280)];
             imv.contentMode = UIViewContentModeScaleAspectFit;
             UIActivityIndicatorView *av = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             [av startAnimating];
@@ -137,15 +154,15 @@ static UIAlertView *av=nil;
         [label appendText:@"\n"];
     }
     
-    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 63, self.view.bounds.size.width, self.view.bounds.size.height)];
+    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     scrollView.backgroundColor = [UIColor whiteColor];
     [scrollView addSubview:label];
     [self.view addSubview:scrollView];
     
-    CGSize labelSize = [label sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds) - 40, CGFLOAT_MAX)];
+    CGSize labelSize = [label sizeThatFits:CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds) - 40, CGFLOAT_MAX)];
     [label setFrame:CGRectMake(20, 10, labelSize.width, labelSize.height)];
-    scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.bounds), labelSize.height + 20+64);
+    scrollView.contentSize = CGSizeMake(CGRectGetWidth([UIScreen mainScreen].bounds), labelSize.height + 20+64);
 }
 
 - (void)nexnpage{

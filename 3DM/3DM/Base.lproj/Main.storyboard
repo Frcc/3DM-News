@@ -23,7 +23,6 @@
         <!--3DM新闻-->
         <scene sceneID="U9t-fQ-HeS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w5X-Ns-L5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="2BY-28-6O0" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uZq-L3-7bZ"/>
@@ -56,6 +55,7 @@
                         <segue destination="C13-VF-iFs" kind="show" identifier="detail" id="g8u-a8-XDL"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w5X-Ns-L5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-155" y="398"/>
         </scene>

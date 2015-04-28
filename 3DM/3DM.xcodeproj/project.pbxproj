@@ -35,6 +35,13 @@
 		EB4417181AEF72AC00E06419 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4417171AEF72AC00E06419 /* SDWebImage.framework */; };
 		EB44171A1AEF739D00E06419 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4417191AEF739D00E06419 /* ImageIO.framework */; };
 		EB44171C1AEF953200E06419 /* qw.png in Resources */ = {isa = PBXBuildFile; fileRef = EB44171B1AEF953200E06419 /* qw.png */; };
+		EB44172A1AEFA4F000E06419 /* JTSAnimatedGIFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = EB44171F1AEFA4F000E06419 /* JTSAnimatedGIFUtility.m */; };
+		EB44172B1AEFA4F000E06419 /* JTSImageInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4417211AEFA4F000E06419 /* JTSImageInfo.m */; };
+		EB44172C1AEFA4F000E06419 /* JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4417231AEFA4F000E06419 /* JTSImageViewController.m */; };
+		EB44172D1AEFA4F000E06419 /* JTSSimpleImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4417251AEFA4F000E06419 /* JTSSimpleImageDownloader.m */; };
+		EB44172E1AEFA4F000E06419 /* UIApplication+JTSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4417271AEFA4F000E06419 /* UIApplication+JTSImageViewController.m */; };
+		EB44172F1AEFA4F000E06419 /* UIImage+JTSImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4417291AEFA4F000E06419 /* UIImage+JTSImageEffects.m */; };
+		EB4417321AEFA51E00E06419 /* myImv.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4417311AEFA51E00E06419 /* myImv.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +106,20 @@
 		EB4417171AEF72AC00E06419 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		EB4417191AEF739D00E06419 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		EB44171B1AEF953200E06419 /* qw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qw.png; sourceTree = "<group>"; };
+		EB44171E1AEFA4F000E06419 /* JTSAnimatedGIFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSAnimatedGIFUtility.h; sourceTree = "<group>"; };
+		EB44171F1AEFA4F000E06419 /* JTSAnimatedGIFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSAnimatedGIFUtility.m; sourceTree = "<group>"; };
+		EB4417201AEFA4F000E06419 /* JTSImageInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageInfo.h; sourceTree = "<group>"; };
+		EB4417211AEFA4F000E06419 /* JTSImageInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageInfo.m; sourceTree = "<group>"; };
+		EB4417221AEFA4F000E06419 /* JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSImageViewController.h; sourceTree = "<group>"; };
+		EB4417231AEFA4F000E06419 /* JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSImageViewController.m; sourceTree = "<group>"; };
+		EB4417241AEFA4F000E06419 /* JTSSimpleImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTSSimpleImageDownloader.h; sourceTree = "<group>"; };
+		EB4417251AEFA4F000E06419 /* JTSSimpleImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTSSimpleImageDownloader.m; sourceTree = "<group>"; };
+		EB4417261AEFA4F000E06419 /* UIApplication+JTSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+JTSImageViewController.h"; sourceTree = "<group>"; };
+		EB4417271AEFA4F000E06419 /* UIApplication+JTSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+JTSImageViewController.m"; sourceTree = "<group>"; };
+		EB4417281AEFA4F000E06419 /* UIImage+JTSImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JTSImageEffects.h"; sourceTree = "<group>"; };
+		EB4417291AEFA4F000E06419 /* UIImage+JTSImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JTSImageEffects.m"; sourceTree = "<group>"; };
+		EB4417301AEFA51E00E06419 /* myImv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myImv.h; sourceTree = "<group>"; };
+		EB4417311AEFA51E00E06419 /* myImv.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myImv.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +189,7 @@
 		EB4416B81AEF1A8C00E06419 /* 3DM */ = {
 			isa = PBXGroup;
 			children = (
+				EB44171D1AEFA4F000E06419 /* Source */,
 				EB4417071AEF606C00E06419 /* M80AttributedLabel */,
 				EB4416EF1AEF411500E06419 /* MJRefresh */,
 				EB4416DF1AEF26CA00E06419 /* TFHpple.h */,
@@ -190,6 +212,8 @@
 				EB4417011AEF43F700E06419 /* TableViewCell.xib */,
 				EB4417041AEF4A5400E06419 /* detailViewController.h */,
 				EB4417051AEF4A5400E06419 /* detailViewController.m */,
+				EB4417301AEFA51E00E06419 /* myImv.h */,
+				EB4417311AEFA51E00E06419 /* myImv.m */,
 			);
 			path = 3DM;
 			sourceTree = "<group>";
@@ -251,6 +275,25 @@
 				EB4417101AEF606C00E06419 /* NSMutableAttributedString+M80.m */,
 			);
 			path = M80AttributedLabel;
+			sourceTree = "<group>";
+		};
+		EB44171D1AEFA4F000E06419 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EB44171E1AEFA4F000E06419 /* JTSAnimatedGIFUtility.h */,
+				EB44171F1AEFA4F000E06419 /* JTSAnimatedGIFUtility.m */,
+				EB4417201AEFA4F000E06419 /* JTSImageInfo.h */,
+				EB4417211AEFA4F000E06419 /* JTSImageInfo.m */,
+				EB4417221AEFA4F000E06419 /* JTSImageViewController.h */,
+				EB4417231AEFA4F000E06419 /* JTSImageViewController.m */,
+				EB4417241AEFA4F000E06419 /* JTSSimpleImageDownloader.h */,
+				EB4417251AEFA4F000E06419 /* JTSSimpleImageDownloader.m */,
+				EB4417261AEFA4F000E06419 /* UIApplication+JTSImageViewController.h */,
+				EB4417271AEFA4F000E06419 /* UIApplication+JTSImageViewController.m */,
+				EB4417281AEFA4F000E06419 /* UIImage+JTSImageEffects.h */,
+				EB4417291AEFA4F000E06419 /* UIImage+JTSImageEffects.m */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,19 +436,26 @@
 			files = (
 				EB4416FC1AEF411500E06419 /* MJRefreshConst.m in Sources */,
 				EB4417121AEF606C00E06419 /* M80AttributedLabelAttachment.m in Sources */,
+				EB44172F1AEFA4F000E06419 /* UIImage+JTSImageEffects.m in Sources */,
 				EB4416C21AEF1A8C00E06419 /* ViewController.m in Sources */,
 				EB4416BF1AEF1A8C00E06419 /* AppDelegate.m in Sources */,
+				EB44172A1AEFA4F000E06419 /* JTSAnimatedGIFUtility.m in Sources */,
 				EB4417141AEF606C00E06419 /* NSMutableAttributedString+M80.m in Sources */,
 				EB4416FD1AEF411500E06419 /* MJRefreshFooterView.m in Sources */,
 				EB4416BC1AEF1A8C00E06419 /* main.m in Sources */,
+				EB4417321AEFA51E00E06419 /* myImv.m in Sources */,
 				EB4416FB1AEF411500E06419 /* MJRefreshBaseView.m in Sources */,
 				EB4416FE1AEF411500E06419 /* MJRefreshHeaderView.m in Sources */,
 				EB4416E51AEF26CA00E06419 /* TFHpple.m in Sources */,
+				EB44172B1AEFA4F000E06419 /* JTSImageInfo.m in Sources */,
 				EB4416E71AEF26CA00E06419 /* XPathQuery.m in Sources */,
+				EB44172E1AEFA4F000E06419 /* UIApplication+JTSImageViewController.m in Sources */,
 				EB4417111AEF606C00E06419 /* M80AttributedLabel.m in Sources */,
 				EB4417021AEF43F700E06419 /* TableViewCell.m in Sources */,
+				EB44172C1AEFA4F000E06419 /* JTSImageViewController.m in Sources */,
 				EB4416E61AEF26CA00E06419 /* TFHppleElement.m in Sources */,
 				EB4417131AEF606C00E06419 /* M80AttributedLabelURL.m in Sources */,
+				EB44172D1AEFA4F000E06419 /* JTSSimpleImageDownloader.m in Sources */,
 				EB4417061AEF4A5400E06419 /* detailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,6 +579,7 @@
 			baseConfigurationReference = 3A6DF4A4E93792F188E94942 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -544,6 +595,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d91265d6-5f31-40f7-b8ae-6308f8388a4c";
 			};
 			name = Debug;
 		};
@@ -552,6 +604,7 @@
 			baseConfigurationReference = B6B501B462A809EA154725FE /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -567,6 +620,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d91265d6-5f31-40f7-b8ae-6308f8388a4c";
 			};
 			name = Release;
 		};

@@ -88,8 +88,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject) {
+        NSLog(@"%@",[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
-        NSArray *elements = [doc searchWithXPathQuery:@"//div[@id='previous']//li"];//<div id="previous"
+        NSArray *elements = [doc searchWithXPathQuery:@"//div[@id='previous']//li | //div[@id='next']//li"];//<div id="previous"
         
         for (TFHppleElement *e in elements) {
             NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -131,8 +132,8 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dic = [dataArr objectAtIndex:indexPath.row];
     NSString *text = [dic objectForKey:@"title"];
-    UIFont *fnt = [UIFont systemFontOfSize:14];
-    CGRect tmpRect = [text boundingRectWithSize:CGSizeMake(304, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:fnt,NSFontAttributeName, nil] context:nil];
+    UIFont *fnt = [UIFont systemFontOfSize:18];
+    CGRect tmpRect = [text boundingRectWithSize:CGSizeMake(290, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObjectsAndKeys:fnt,NSFontAttributeName, nil] context:nil];
     return tmpRect.size.height+20;
 }
 
@@ -156,8 +157,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"qw.png"] style:UIBarButtonItemStyleDone target:nil action:nil];
-    [self.navigationItem setBackBarButtonItem:backItem];
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"qw.png"] style:UIBarButtonItemStyleDone target:nil action:nil];
+//    [self.navigationItem setBackBarButtonItem:backItem];
+//    self.navigationItem.backBarButtonItem.tintColor = [UIColor blackColor];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dic = [dataArr objectAtIndex:indexPath.row];
     transUrl = [dic objectForKey:@"url"];

@@ -8,6 +8,14 @@
 
 #import "AppDelegate.h"
 
+@implementation UINavigationItem (CustomBackButton)
+
+-(UIBarButtonItem *)backBarButtonItem{
+    return [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:NULL];
+}
+
+@end
+
 @interface AppDelegate ()
 
 @end
