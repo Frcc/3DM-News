@@ -90,14 +90,13 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 }
 
 - (void)loadData{
-    [dataArr removeAllObjects];
-    
     NSString *urlStr =@"http://www.3dmgame.com/";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject) {
-        NSLog(@"%@",[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+//        NSLog(@"%@",[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+        [dataArr removeAllObjects];
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
         NSArray *elements = [doc searchWithXPathQuery:@"//div[@id='previous']//li | //div[@id='next']//li"];//<div id="previous"
         

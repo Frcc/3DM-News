@@ -114,7 +114,7 @@
     _lastUpdateTimeLabel.frame = CGRectMake(statusX, lastUpdateY, statusWidth, statusHeight);
     
     // 3.箭头
-    CGFloat arrowX = w * 0.5 - 100;
+    CGFloat arrowX = w * 0.5 - 140;
     _arrowImage.center = CGPointMake(arrowX, h * 0.5);
     
     // 4.指示器
