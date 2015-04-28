@@ -30,7 +30,14 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    dataArr = [NSMutableArray array];
+    NSArray *daarr = [[NSUserDefaults standardUserDefaults] objectForKey:@"data"];
+    
+    if (daarr) {
+        dataArr = [NSMutableArray arrayWithArray:daarr];
+        [tbv reloadData];
+    }else{
+        dataArr = [NSMutableArray array];
+    }
     
      [tbv registerClass:[UITableViewCell class] forCellReuseIdentifier:MJTableViewCellIdentifier];
     
@@ -83,6 +90,8 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 }
 
 - (void)loadData{
+    [dataArr removeAllObjects];
+    
     NSString *urlStr =@"http://www.3dmgame.com/";
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

@@ -66,7 +66,9 @@ static UIAlertView *av=nil;
                     [dic setObject:eee.content forKey:@"text"];
                     if ([eee.attributes objectForKey:@"src"]) {
                         NSString *ul = [eee.attributes objectForKey:@"src"];
-                        ul = [ul stringByReplacingCharactersInRange:NSMakeRange(7, 6) withString:@""];
+                        if ([ul containsString:@"//img"]) {
+                            ul = [ul stringByReplacingCharactersInRange:NSMakeRange(7, 6) withString:@""];
+                        }
                         [dic setObject:ul forKey:@"imageurl"];
                     }
                     [txtData addObject:dic];
@@ -74,7 +76,9 @@ static UIAlertView *av=nil;
                         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
                         if ([eeee.attributes objectForKey:@"src"]) {
                             NSString *ul = [eeee.attributes objectForKey:@"src"];
-                            ul = [ul stringByReplacingCharactersInRange:NSMakeRange(7, 6) withString:@""];
+                            if ([ul containsString:@"//img"]) {
+                                ul = [ul stringByReplacingCharactersInRange:NSMakeRange(7, 6) withString:@""];
+                            }
                             [dic setObject:ul forKey:@"imageurl"];
                         }
                         [txtData addObject:dic];
