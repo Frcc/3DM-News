@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E2DA8AC1AF6FC730084FF9C /* TuiJianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2DA8AA1AF6FC730084FF9C /* TuiJianViewController.m */; };
+		2E2DA8AD1AF6FC730084FF9C /* TuiJianViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2DA8AB1AF6FC730084FF9C /* TuiJianViewController.xib */; };
+		2E2DA8B11AF703280084FF9C /* tuijianTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E2DA8AF1AF703280084FF9C /* tuijianTableViewCell.m */; };
+		2E2DA8B21AF703280084FF9C /* tuijianTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E2DA8B01AF703280084FF9C /* tuijianTableViewCell.xib */; };
 		5236A3B2054229891592655F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B0DE356D7BB2A716C20CA9 /* libPods.a */; };
 		EB4416BC1AEF1A8C00E06419 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4416BB1AEF1A8C00E06419 /* main.m */; };
 		EB4416BF1AEF1A8C00E06419 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4416BE1AEF1A8C00E06419 /* AppDelegate.m */; };
@@ -55,6 +59,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E2DA8A91AF6FC730084FF9C /* TuiJianViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuiJianViewController.h; sourceTree = "<group>"; };
+		2E2DA8AA1AF6FC730084FF9C /* TuiJianViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuiJianViewController.m; sourceTree = "<group>"; };
+		2E2DA8AB1AF6FC730084FF9C /* TuiJianViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TuiJianViewController.xib; sourceTree = "<group>"; };
+		2E2DA8AE1AF703280084FF9C /* tuijianTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tuijianTableViewCell.h; sourceTree = "<group>"; };
+		2E2DA8AF1AF703280084FF9C /* tuijianTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tuijianTableViewCell.m; sourceTree = "<group>"; };
+		2E2DA8B01AF703280084FF9C /* tuijianTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tuijianTableViewCell.xib; sourceTree = "<group>"; };
 		3A6DF4A4E93792F188E94942 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B6B501B462A809EA154725FE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C6B0DE356D7BB2A716C20CA9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +224,12 @@
 				EB4417051AEF4A5400E06419 /* detailViewController.m */,
 				EB4417301AEFA51E00E06419 /* myImv.h */,
 				EB4417311AEFA51E00E06419 /* myImv.m */,
+				2E2DA8A91AF6FC730084FF9C /* TuiJianViewController.h */,
+				2E2DA8AA1AF6FC730084FF9C /* TuiJianViewController.m */,
+				2E2DA8AB1AF6FC730084FF9C /* TuiJianViewController.xib */,
+				2E2DA8AE1AF703280084FF9C /* tuijianTableViewCell.h */,
+				2E2DA8AF1AF703280084FF9C /* tuijianTableViewCell.m */,
+				2E2DA8B01AF703280084FF9C /* tuijianTableViewCell.xib */,
 			);
 			path = 3DM;
 			sourceTree = "<group>";
@@ -378,12 +394,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E2DA8B21AF703280084FF9C /* tuijianTableViewCell.xib in Resources */,
 				EB4416C51AEF1A8C00E06419 /* Main.storyboard in Resources */,
 				EB44171C1AEF953200E06419 /* qw.png in Resources */,
 				EB4417031AEF43F800E06419 /* TableViewCell.xib in Resources */,
 				EB4416CA1AEF1A8C00E06419 /* LaunchScreen.xib in Resources */,
 				EB4416FA1AEF411500E06419 /* MJRefresh.bundle in Resources */,
 				EB4416C71AEF1A8C00E06419 /* Images.xcassets in Resources */,
+				2E2DA8AD1AF6FC730084FF9C /* TuiJianViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +457,7 @@
 				EB44172F1AEFA4F000E06419 /* UIImage+JTSImageEffects.m in Sources */,
 				EB4416C21AEF1A8C00E06419 /* ViewController.m in Sources */,
 				EB4416BF1AEF1A8C00E06419 /* AppDelegate.m in Sources */,
+				2E2DA8AC1AF6FC730084FF9C /* TuiJianViewController.m in Sources */,
 				EB44172A1AEFA4F000E06419 /* JTSAnimatedGIFUtility.m in Sources */,
 				EB4417141AEF606C00E06419 /* NSMutableAttributedString+M80.m in Sources */,
 				EB4416FD1AEF411500E06419 /* MJRefreshFooterView.m in Sources */,
@@ -451,6 +470,7 @@
 				EB4416E71AEF26CA00E06419 /* XPathQuery.m in Sources */,
 				EB44172E1AEFA4F000E06419 /* UIApplication+JTSImageViewController.m in Sources */,
 				EB4417111AEF606C00E06419 /* M80AttributedLabel.m in Sources */,
+				2E2DA8B11AF703280084FF9C /* tuijianTableViewCell.m in Sources */,
 				EB4417021AEF43F700E06419 /* TableViewCell.m in Sources */,
 				EB44172C1AEFA4F000E06419 /* JTSImageViewController.m in Sources */,
 				EB4416E61AEF26CA00E06419 /* TFHppleElement.m in Sources */,
@@ -595,7 +615,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d91265d6-5f31-40f7-b8ae-6308f8388a4c";
+				PROVISIONING_PROFILE = "6b107151-31f2-4df0-a2f6-b2626920a647";
 			};
 			name = Debug;
 		};
@@ -620,7 +640,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d91265d6-5f31-40f7-b8ae-6308f8388a4c";
+				PROVISIONING_PROFILE = "6b107151-31f2-4df0-a2f6-b2626920a647";
 			};
 			name = Release;
 		};

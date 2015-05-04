@@ -137,7 +137,7 @@ static UIAlertView *av=nil;
             }
             UIWebView *wv = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 280, 280)];
             [wv loadHTMLString:url baseURL:nil];
-            [wv setScalesPageToFit:YES];
+            [wv setScalesPageToFit:NO];
             [label appendView:wv margin:UIEdgeInsetsMake(0, 0, 0, 0) alignment:M80ImageAlignmentCenter];
             [label appendText:@"\n"];
             continue;
@@ -171,7 +171,11 @@ static UIAlertView *av=nil;
 
 - (void)nexnpage{
     detailViewController *vc = [detailViewController new];
-    vc.url = [self.url stringByReplacingOccurrencesOfString:@".html" withString:[NSString stringWithFormat:@"_%d.html",self.page+1]];
+    if (self.page>1) {
+        vc.url = [self.url stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"_%d.html",self.page] withString:[NSString stringWithFormat:@"_%d.html",self.page+1]];
+    }else{
+        vc.url = [self.url stringByReplacingOccurrencesOfString:@".html" withString:[NSString stringWithFormat:@"_%d.html",self.page+1]];
+    }
     vc.page = self.page+1;
     [self.navigationController pushViewController:vc animated:YES];
 }

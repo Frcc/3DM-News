@@ -12,6 +12,8 @@
 #import "MJRefresh.h"
 #import <Foundation/NSCharacterSet.h>
 #import "TableViewCell.h"
+#import "detailViewController.h"
+#import "TuiJianViewController.h"
 
 NSString *const MJTableViewCellIdentifier = @"Cell";
 
@@ -20,6 +22,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     IBOutlet UITableView *tbv;
     MJRefreshHeaderView *_header;
     NSString *transUrl;
+    TFHpple *doc;
 }
 
 @end
@@ -97,7 +100,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation,id responseObject) {
 //        NSLog(@"%@",[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
         [dataArr removeAllObjects];
-        TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
+        doc = [[TFHpple alloc] initWithHTMLData:responseObject];
         NSArray *elements = [doc searchWithXPathQuery:@"//div[@id='previous']//li | //div[@id='next']//li"];//<div id="previous"
         
         for (TFHppleElement *e in elements) {
@@ -186,6 +189,12 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)tuijian:(id)sender{
+    TuiJianViewController *vc = [[TuiJianViewController alloc] init];
+    vc.doc = doc;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

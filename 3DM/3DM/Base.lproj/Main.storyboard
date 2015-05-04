@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="a8y-cI-Kp1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="a8y-cI-Kp1">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -49,7 +49,13 @@
                             <constraint firstAttribute="trailing" secondItem="IiY-gm-c90" secondAttribute="trailing" id="rBi-fR-2Y8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="3DM新闻" id="W4K-1n-OxV"/>
+                    <navigationItem key="navigationItem" title="3DM新闻" id="W4K-1n-OxV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="59k-MN-kgF">
+                            <connections>
+                                <action selector="tuijian:" destination="2BY-28-6O0" id="QBv-uL-FGE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tbv" destination="IiY-gm-c90" id="OSu-ek-qvV"/>
                         <segue destination="C13-VF-iFs" kind="show" identifier="detail" id="g8u-a8-XDL"/>
@@ -57,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w5X-Ns-L5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-155" y="398"/>
+            <point key="canvasLocation" x="-351" y="383"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="SWN-ul-agl">
