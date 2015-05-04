@@ -30,7 +30,9 @@
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     
-    self.automaticallyAdjustsScrollViewInsets = NO;  
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.navigationItem.rightBarButtonItem = nil;
     
     txtData = [NSMutableArray array];
     
