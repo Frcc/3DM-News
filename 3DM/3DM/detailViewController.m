@@ -23,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
     
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
@@ -56,7 +58,6 @@ static UIAlertView *av=nil;
         for (TFHppleElement *e in elements) {
             for (TFHppleElement *ee in e.children) {
                 if ([[ee.attributes objectForKey:@"class"] isEqualToString:@"page_fenye"]) {
-                    NSLog(@"3page_fenye");
                     UIBarButtonItem *rbtn = [[UIBarButtonItem alloc] initWithTitle:@"下一页" style:UIBarButtonItemStylePlain target:self action:@selector(nexnpage)];
                     self.navigationItem.rightBarButtonItem = rbtn;
                     break;
@@ -150,9 +151,11 @@ static UIAlertView *av=nil;
             [av startAnimating];
             av.center = imv.center;
             [imv addSubview:av];
-            [imv setImageWithURL:[NSURL URLWithString:imageurl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+            
+            [imv setImageWithURL:[NSURL URLWithString:imageurl] placeholderImage:nil options:SDWebImageProgressiveDownload|SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
                 [av removeFromSuperview];
             }];
+          
             [label appendView:imv margin:UIEdgeInsetsMake(0, 0, 0, 0) alignment:M80ImageAlignmentCenter];
         }
         [label appendText:@"\n"];
