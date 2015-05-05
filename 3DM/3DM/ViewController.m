@@ -49,6 +49,12 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     [self addHeader];
 }
 
+- (void)viewWillLayoutSubviews{
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
+
 - (void)addHeader
 {
     MJRefreshHeaderView *header = [MJRefreshHeaderView header];

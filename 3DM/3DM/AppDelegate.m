@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <SDWebImage/SDImageCache.h>
 
 @implementation UINavigationItem (CustomBackButton)
 
@@ -49,6 +50,10 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
+    [[SDImageCache sharedImageCache] clearMemory];
 }
 
 @end

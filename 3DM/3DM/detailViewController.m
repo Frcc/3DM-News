@@ -13,9 +13,14 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "myImv.h"
 
+#define BackGestureOffsetXToBack 80//>80 show pre vc
+
 @interface detailViewController (){
     NSMutableArray *txtData;
+    UIImageView *gesimv;
 }
+
+@property (nonatomic, strong) UIPanGestureRecognizer *leftSwipeGestureRecognizer;
 
 @end
 
@@ -34,6 +39,10 @@
     
     self.navigationItem.rightBarButtonItem = nil;
     
+    self.leftSwipeGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
+    
+    [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
+    
     txtData = [NSMutableArray array];
     
     [self getData];
@@ -42,6 +51,7 @@
 static UIAlertView *av=nil;
 
 - (void)getData{
+    [txtData removeAllObjects];
     NSString *urlStr =self.url;
     
     if (self.page==0) {
@@ -99,7 +109,16 @@ static UIAlertView *av=nil;
         }
         av = [[UIAlertView alloc] initWithTitle:error.localizedDescription message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [av show];
-        [self.navigationController popViewControllerAnimated:YES];
+        if (self.page>2) {
+            self.url = [self.url stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"_%d.html",self.page] withString:[NSString stringWithFormat:@"_%d.html",self.page-1]];
+        }else{
+            self.url = [self.url stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"_%d.html",self.page] withString:[NSString stringWithFormat:@".html"]];
+        }
+        self.page--;
+        if (self.page<1) {
+            self.page=1;
+        }
+        self.title = [NSString stringWithFormat:@"第%d页",self.page];
         [self performSelector:@selector(dismidd) withObject:nil afterDelay:0.5];
     }];
 }
@@ -111,15 +130,11 @@ static UIAlertView *av=nil;
     }
 }
 
-- (void)viewWillLayoutSubviews{
-    
-}
-
-- (void)viewDidLayoutSubviews{
-    
-}
-
 - (void)showTxt{
+    while (self.view.subviews.lastObject) {
+        [self.view.subviews.lastObject removeFromSuperview];
+    }
+    
     M80AttributedLabel *label = [[M80AttributedLabel alloc]initWithFrame:[UIScreen mainScreen].bounds];
     label.lineSpacing = 5.0;
     label.textColor = [UIColor blackColor];
@@ -141,6 +156,7 @@ static UIAlertView *av=nil;
             UIWebView *wv = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 280, 280)];
             [wv loadHTMLString:url baseURL:nil];
             [wv setScalesPageToFit:NO];
+            wv.scrollView.scrollEnabled = NO;
             [label appendView:wv margin:UIEdgeInsetsMake(0, 0, 0, 0) alignment:M80ImageAlignmentCenter];
             [label appendText:@"\n"];
             continue;
@@ -175,14 +191,163 @@ static UIAlertView *av=nil;
 }
 
 - (void)nexnpage{
-    detailViewController *vc = [detailViewController new];
     if (self.page>1) {
-        vc.url = [self.url stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"_%d.html",self.page] withString:[NSString stringWithFormat:@"_%d.html",self.page+1]];
+        self.url = [self.url stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"_%d.html",self.page] withString:[NSString stringWithFormat:@"_%d.html",self.page+1]];
     }else{
-        vc.url = [self.url stringByReplacingOccurrencesOfString:@".html" withString:[NSString stringWithFormat:@"_%d.html",self.page+1]];
+        self.url = [self.url stringByReplacingOccurrencesOfString:@".html" withString:[NSString stringWithFormat:@"_%d.html",self.page+1]];
     }
-    vc.page = self.page+1;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    self.page = self.page+1;
+    
+    [self getData];
+}
+
+- (void)previouspage{
+    if (self.page==1) {
+        return;
+    }
+    if (self.page>2) {
+        self.url = [self.url stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"_%d.html",self.page] withString:[NSString stringWithFormat:@"_%d.html",self.page-1]];
+    }else{
+        self.url = [self.url stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"_%d.html",self.page] withString:[NSString stringWithFormat:@".html"]];
+    }
+    
+    self.page = self.page-1;
+    
+    [self getData];
+}
+
+- (void)handleSwipes:(UIPanGestureRecognizer *)sender
+{
+//    if (sender.state == UIGestureRecognizerStateBegan) {
+//        [self.navigationController.view addSubview:[self getImageFromView:self.navigationController.view]];
+//    }
+//    if (sender.state == UIGestureRecognizerStateEnded) {
+//        if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
+//            //next
+//            [self nexnpage];
+//        }
+//        
+//        if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
+//            //previous
+//            [self previouspage];
+//        }
+//    }
+    
+    CGPoint startPanPoint = CGPointZero;
+    if (sender.state==UIGestureRecognizerStateBegan) {
+        gesimv = [self getImageFromView:self.navigationController.view];
+        [self.navigationController.view addSubview:gesimv];
+        startPanPoint = gesimv.frame.origin;
+        CGPoint velocity=[sender velocityInView:self.view];
+        if(velocity.x!=0){
+//            [self willShowPreViewController];
+        }
+        return;
+    }
+    CGPoint currentPostion = [sender translationInView:self.view];
+    CGFloat xoffset = startPanPoint.x + currentPostion.x;
+    CGFloat yoffset = startPanPoint.y + currentPostion.y;
+    if (xoffset>0) {//向右滑
+                if (true) {
+                    xoffset = xoffset>self.view.frame.size.width?self.view.frame.size.width:xoffset;
+                }else{
+                    xoffset = 0;
+                }
+    }else if(xoffset<0){//向左滑
+        if (true) {
+            xoffset = xoffset<-self.view.frame.size.width?-self.view.frame.size.width:xoffset;
+        }else{
+            xoffset = 0;
+        }
+    }
+    if (!CGPointEqualToPoint(CGPointMake(xoffset, yoffset), gesimv.frame.origin)) {
+        [self layoutCurrentViewWithOffset:UIOffsetMake(xoffset, yoffset)];
+    }
+    if (sender.state==UIGestureRecognizerStateEnded) {
+        if (gesimv.frame.origin.x<0) {
+            if (gesimv.frame.origin.x>-BackGestureOffsetXToBack){
+                [self hidePreViewControllerp];
+            }else{
+                [self showPreViewControllerp];
+                [self nexnpage];
+            }
+        }else{
+            if (gesimv.frame.origin.x<BackGestureOffsetXToBack){
+                [self hidePreViewController];
+            }else{
+                [self showPreViewController];
+                [self previouspage];
+            }
+        }
+    }
+}
+
+-(void)layoutCurrentViewWithOffset:(UIOffset)offset{
+    [gesimv setFrame:CGRectMake(offset.horizontal, self.view.bounds.origin.y, self.view.frame.size.width, gesimv.frame.size.height)];
+    if (offset.horizontal>=0) {
+        [self.view setFrame:CGRectMake(offset.horizontal/2-self.view.frame.size.width/2, self.view.bounds.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
+    }else{
+        [self.view setFrame:CGRectMake(self.view.frame.size.width/2+offset.horizontal/2, self.view.bounds.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
+    }
+}
+
+-(void)showPreViewController{
+    UIView *currentView = gesimv;
+    NSTimeInterval animatedTime = 0;
+    animatedTime = ABS(self.view.frame.size.width - currentView.frame.origin.x) / self.view.frame.size.width * 0.35;
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView animateWithDuration:animatedTime animations:^{
+        [self layoutCurrentViewWithOffset:UIOffsetMake(self.view.frame.size.width, 0)];
+    } completion:^(BOOL finished) {
+        [gesimv removeFromSuperview];
+    }];
+}
+-(void)hidePreViewController{
+    UIView *currentView = gesimv;
+    NSTimeInterval animatedTime = 0;
+    animatedTime = ABS(self.view.frame.size.width - currentView.frame.origin.x) / self.view.frame.size.width * 0.35;
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView animateWithDuration:animatedTime animations:^{
+        [self layoutCurrentViewWithOffset:UIOffsetMake(0, 0)];
+    } completion:^(BOOL finished) {
+        [gesimv removeFromSuperview];
+    }];
+}
+
+-(void)showPreViewControllerp{
+    UIView *currentView = gesimv;
+    NSTimeInterval animatedTime = 0;
+    animatedTime = ABS(self.view.frame.size.width - currentView.frame.origin.x) / self.view.frame.size.width * 0.35;
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView animateWithDuration:animatedTime animations:^{
+        [self layoutCurrentViewWithOffset:UIOffsetMake(-self.view.frame.size.width, 0)];
+    } completion:^(BOOL finished) {
+        [gesimv removeFromSuperview];
+    }];
+}
+-(void)hidePreViewControllerp{
+    UIView *currentView = gesimv;
+    NSTimeInterval animatedTime = 0;
+    animatedTime = ABS(self.view.frame.size.width - currentView.frame.origin.x) / self.view.frame.size.width * 0.35;
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView animateWithDuration:animatedTime animations:^{
+        [self layoutCurrentViewWithOffset:UIOffsetMake(0, 0)];
+    } completion:^(BOOL finished) {
+        [gesimv removeFromSuperview];
+    }];
+}
+
+-(UIImageView *)getImageFromView:(UIView *)theView{
+    UIGraphicsBeginImageContextWithOptions(theView.bounds.size, YES, 2.0);
+    [theView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image=UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageView *imv = [[UIImageView alloc] initWithImage:image];
+    imv.layer.masksToBounds = YES;
+    imv.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    imv.layer.borderWidth=1;
+    return imv;
 }
 
 @end
