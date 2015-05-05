@@ -434,7 +434,7 @@ typedef struct {
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     self.scrollView.delegate = self;
     self.scrollView.zoomScale = 1.0f;
-    self.scrollView.maximumZoomScale = 8.0f;
+    self.scrollView.maximumZoomScale = 18.0f;
     self.scrollView.scrollEnabled = NO;
     self.scrollView.isAccessibilityElement = YES;
     self.scrollView.accessibilityLabel = self.accessibilityLabel;

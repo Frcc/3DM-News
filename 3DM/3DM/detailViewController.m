@@ -131,10 +131,6 @@ static UIAlertView *av=nil;
 }
 
 - (void)showTxt{
-    while (self.view.subviews.lastObject) {
-        [self.view.subviews.lastObject removeFromSuperview];
-    }
-    
     M80AttributedLabel *label = [[M80AttributedLabel alloc]initWithFrame:[UIScreen mainScreen].bounds];
     label.lineSpacing = 5.0;
     label.textColor = [UIColor blackColor];
@@ -270,6 +266,9 @@ static UIAlertView *av=nil;
                 [self hidePreViewControllerp];
             }else{
                 [self showPreViewControllerp];
+                while (self.view.subviews.lastObject) {
+                    [self.view.subviews.lastObject removeFromSuperview];
+                }
                 [self nexnpage];
             }
         }else{
@@ -277,6 +276,9 @@ static UIAlertView *av=nil;
                 [self hidePreViewController];
             }else{
                 [self showPreViewController];
+                while (self.view.subviews.lastObject) {
+                    [self.view.subviews.lastObject removeFromSuperview];
+                }
                 [self previouspage];
             }
         }
