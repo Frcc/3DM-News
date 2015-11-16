@@ -12,6 +12,7 @@
 #import "M80AttributedLabel.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "myImv.h"
+#import "pinglunTableViewController.h"
 
 #define BackGestureOffsetXToBack 80//>80 show pre vc
 
@@ -21,6 +22,8 @@
 }
 
 @property (nonatomic, strong) UIPanGestureRecognizer *leftSwipeGestureRecognizer;
+@property (nonatomic, strong) UIActivityIndicatorView *ai;
+@property (nonatomic,strong) NSString *aid;
 
 @end
 
@@ -31,6 +34,9 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
+    
+    self.ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.ai.center = self.view.center;
     
     self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
@@ -44,6 +50,11 @@
     [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
     
     txtData = [NSMutableArray array];
+    
+    UIBarButtonItem *rbtn = [[UIBarButtonItem alloc] initWithTitle:@"评论" style:UIBarButtonItemStylePlain target:self action:@selector(pinglun)];
+    self.navigationItem.rightBarButtonItem = rbtn;
+    
+    self.aid = [NSString stringWithFormat:@"%@",[self.url.lastPathComponent componentsSeparatedByString:@"."].firstObject];
     
     [self getData];
 }
@@ -60,6 +71,7 @@ static UIAlertView *av=nil;
     
     self.navigationItem.rightBarButtonItem=nil;
     self.title = [NSString stringWithFormat:@"第%d页",self.page];
+    [self.view addSubview:self.ai];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];//<div class="miaoshu"> <div class="h3ke con">
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -71,7 +83,8 @@ static UIAlertView *av=nil;
             for (TFHppleElement *ee in e.children) {
                 if ([[ee.attributes objectForKey:@"class"] isEqualToString:@"page_fenye"]) {
                     UIBarButtonItem *rbtn = [[UIBarButtonItem alloc] initWithTitle:@"下一页" style:UIBarButtonItemStylePlain target:self action:@selector(nexnpage)];
-                    self.navigationItem.rightBarButtonItem = rbtn;
+                    UIBarButtonItem *plbtn = [[UIBarButtonItem alloc] initWithTitle:@"评论" style:UIBarButtonItemStylePlain target:self action:@selector(pinglun)];
+                    self.navigationItem.rightBarButtonItems = @[plbtn,rbtn];
                     break;
                 }
                 for (TFHppleElement *eee in ee.children) {
@@ -101,8 +114,9 @@ static UIAlertView *av=nil;
         }
         
         [self showTxt];
-        
+        [self.ai removeFromSuperview];
     }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
+        [self.ai removeFromSuperview];
         if (av) {
             [av dismissWithClickedButtonIndex:0 animated:YES];
             av = nil;
@@ -119,6 +133,7 @@ static UIAlertView *av=nil;
             self.page=1;
         }
         self.title = [NSString stringWithFormat:@"第%d页",self.page];
+        [self getData];
         [self performSelector:@selector(dismidd) withObject:nil afterDelay:0.5];
     }];
 }
@@ -144,12 +159,12 @@ static UIAlertView *av=nil;
         if ([imageurl containsString:@"swf"]) {
             NSArray *arr = [imageurl componentsSeparatedByString:@"/"];
             NSString *str = [arr objectAtIndex:arr.count-2];
-            NSString *url = [NSString stringWithFormat:@"<iframe height=280 width=280 src=\"http://player.youku.com/embed/%@\" frameborder=0 allowfullscreen></iframe>",str];
+            NSString *url = [NSString stringWithFormat:@"<iframe height=%d width=%d src=\"http://player.youku.com/embed/%@\" frameborder=0 allowfullscreen></iframe>",(int)[UIScreen mainScreen].bounds.size.width-40,(int)[UIScreen mainScreen].bounds.size.width-40,str];
             if ([imageurl containsString:@"tudou"]) {
                 str = [arr objectAtIndex:4];
-                 url = [NSString stringWithFormat:@"<iframe src=\"http://www.tudou.com/programs/view/html5embed.action?type=2&code=%@&lcode=%@&resourceId=45565876_04_05_99\" allowtransparency=\"true\" allowfullscreen=\"true\" allowfullscreenInteractive=\"true\" scrolling=\"no\" border=\"0\" frameborder=\"0\" style=\"width:280px;height:280px;\"></iframe>",str,str];
+                 url = [NSString stringWithFormat:@"<iframe src=\"http://www.tudou.com/programs/view/html5embed.action?type=2&code=%@&lcode=%@&resourceId=45565876_04_05_99\" allowtransparency=\"true\" allowfullscreen=\"true\" allowfullscreenInteractive=\"true\" scrolling=\"no\" border=\"0\" frameborder=\"0\" style=\"width:%dpx;height:%dpx;\"></iframe>",str,str,(int)[UIScreen mainScreen].bounds.size.width-40,(int)[UIScreen mainScreen].bounds.size.width-40];
             }
-            UIWebView *wv = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 280, 280)];
+            UIWebView *wv = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-40, [UIScreen mainScreen].bounds.size.width-40)];
             [wv loadHTMLString:url baseURL:nil];
             [wv setScalesPageToFit:NO];
             wv.scrollView.scrollEnabled = NO;
@@ -159,7 +174,7 @@ static UIAlertView *av=nil;
         }
         [label appendText:text];
         if (imageurl) {
-            myImv *imv = [[myImv alloc] initWithFrame:CGRectMake(0, 0, 280, 280)];
+            myImv *imv = [[myImv alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width-40, [UIScreen mainScreen].bounds.size.width-40)];
             imv.contentMode = UIViewContentModeScaleAspectFit;
             UIActivityIndicatorView *av = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             [av startAnimating];
@@ -194,13 +209,22 @@ static UIAlertView *av=nil;
     }
     
     self.page = self.page+1;
-    
+   
     [self getData];
+}
+
+- (void)pinglun{
+    pinglunTableViewController *vc = [[pinglunTableViewController alloc] init];
+    vc.aid = self.aid;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)previouspage{
     if (self.page==1) {
         return;
+    }
+    while (self.view.subviews.lastObject) {
+        [self.view.subviews.lastObject removeFromSuperview];
     }
     if (self.page>2) {
         self.url = [self.url stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"_%d.html",self.page] withString:[NSString stringWithFormat:@"_%d.html",self.page-1]];
@@ -276,9 +300,6 @@ static UIAlertView *av=nil;
                 [self hidePreViewController];
             }else{
                 [self showPreViewController];
-                while (self.view.subviews.lastObject) {
-                    [self.view.subviews.lastObject removeFromSuperview];
-                }
                 [self previouspage];
             }
         }
@@ -286,12 +307,15 @@ static UIAlertView *av=nil;
 }
 
 -(void)layoutCurrentViewWithOffset:(UIOffset)offset{
-    [gesimv setFrame:CGRectMake(offset.horizontal, self.view.bounds.origin.y, self.view.frame.size.width, gesimv.frame.size.height)];
     if (offset.horizontal>=0) {
+        if (self.page == 1) {
+            return;
+        }
         [self.view setFrame:CGRectMake(offset.horizontal/2-self.view.frame.size.width/2, self.view.bounds.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
     }else{
         [self.view setFrame:CGRectMake(self.view.frame.size.width/2+offset.horizontal/2, self.view.bounds.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
     }
+    [gesimv setFrame:CGRectMake(offset.horizontal, self.view.bounds.origin.y, self.view.frame.size.width, gesimv.frame.size.height)];
 }
 
 -(void)showPreViewController{
