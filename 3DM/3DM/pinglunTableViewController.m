@@ -17,6 +17,7 @@
 @property (nonatomic,strong) NSMutableArray *comment_acts;
 @property (nonatomic,strong) NSMutableArray *feedfonts;
 @property (nonatomic,strong) NSMutableArray *comment_btnss;
+@property (nonatomic) int pageno;
 
 @end
 
@@ -40,11 +41,21 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"pinglunTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"pinglunTableViewCell"];
     
+    self.pageno = 1;
+    [self getdata];
+}
+
+- (void)getdata{
+    
+    UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    UIBarButtonItem *bb = [[UIBarButtonItem alloc] initWithCustomView:ai];
+    [ai startAnimating];
+    self.navigationItem.rightBarButtonItem = bb;
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];//<div class="miaoshu"> <div class="h3ke con">
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [manager GET:[NSString stringWithFormat:@"http://www.3dmgame.com//plus/feedback.php?action=jsget&aid=%@",self.aid] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *str = [NSString stringWithUTF8String:[responseObject bytes]];
-        NSLog(@"%@",str);
+    [manager GET:[NSString stringWithFormat:@"http://www.3dmgame.com//plus/feedback.php?&action=jsget&aid=%@&k=1&pageno=%d",self.aid,self.pageno] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.navigationItem.rightBarButtonItem = nil;
         TFHpple *doc = [[TFHpple alloc] initWithHTMLData:responseObject];
         NSArray *elements = [doc searchWithXPathQuery:@"//li"];//<div id="previous"
         for (TFHppleElement *e in elements) {
@@ -65,8 +76,11 @@
             }
         }
         [self.tableView reloadData];
+        self.pageno++;
+        [self getdata];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
+        self.navigationItem.rightBarButtonItem = nil;
     }];
 }
 
@@ -83,7 +97,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    NSString *str = [[self.feedfonts objectAtIndex:indexPath.row] stringByAppendingFormat:@"--%@",[[self.comment_btnss[indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"回复" withString:@""]];
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:17]};
+    // NSString class method: boundingRectWithSize:options:attributes:context is
+    // available only on ios7.0 sdk.
+    CGRect rect = [str boundingRectWithSize:CGSizeMake(304, MAXFLOAT)
+                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                           attributes:attributes
+                                              context:nil];
+    return 81-48+rect.size.height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -91,7 +113,7 @@
     
     cell.titlelabel.text = self.titles[indexPath.row];
     cell.comment_actlabel.text = self.comment_acts[indexPath.row];
-    cell.feedfontlabel.text = self.feedfonts[indexPath.row];
+    cell.feedfontlabel.text = [[self.feedfonts objectAtIndex:indexPath.row] stringByAppendingFormat:@"--%@",[[self.comment_btnss[indexPath.row] stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"回复" withString:@""]];
     
     return cell;
 }
