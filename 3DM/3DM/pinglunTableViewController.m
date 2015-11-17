@@ -10,6 +10,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import "TFHpple.h"
 #import "pinglunTableViewCell.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface pinglunTableViewController ()
 
@@ -43,14 +44,11 @@
     
     self.pageno = 1;
     [self getdata];
+    
+    [SVProgressHUD show];
 }
 
 - (void)getdata{
-    
-    UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    UIBarButtonItem *bb = [[UIBarButtonItem alloc] initWithCustomView:ai];
-    [ai startAnimating];
-    self.navigationItem.rightBarButtonItem = bb;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];//<div class="miaoshu"> <div class="h3ke con">
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -76,11 +74,16 @@
             }
         }
         [self.tableView reloadData];
-        self.pageno++;
-        [self getdata];
+        if (elements.count>0) {
+            
+            self.pageno++;
+            [self getdata];
+        }else{
+            [SVProgressHUD dismiss];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        self.navigationItem.rightBarButtonItem = nil;
+        [SVProgressHUD dismiss];
     }];
 }
 
