@@ -49,6 +49,9 @@
 		EB8A54581BF9DB7E00E2B0BC /* pinglunTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8A54571BF9DB7E00E2B0BC /* pinglunTableViewController.m */; };
 		EB8A545C1BF9E17B00E2B0BC /* pinglunTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8A545A1BF9E17B00E2B0BC /* pinglunTableViewCell.m */; };
 		EB8A545D1BF9E17B00E2B0BC /* pinglunTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB8A545B1BF9E17B00E2B0BC /* pinglunTableViewCell.xib */; };
+		EBBE33771C0C1AB5004BF51F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBBE33741C0C1AB5004BF51F /* Info.plist */; };
+		EBBE33781C0C1AB5004BF51F /* k.html in Resources */ = {isa = PBXBuildFile; fileRef = EBBE33751C0C1AB5004BF51F /* k.html */; };
+		EBBE33791C0C1AB5004BF51F /* KaKuDongMan.ipa in Resources */ = {isa = PBXBuildFile; fileRef = EBBE33761C0C1AB5004BF51F /* KaKuDongMan.ipa */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +141,9 @@
 		EB8A54591BF9E17B00E2B0BC /* pinglunTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinglunTableViewCell.h; sourceTree = "<group>"; };
 		EB8A545A1BF9E17B00E2B0BC /* pinglunTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pinglunTableViewCell.m; sourceTree = "<group>"; };
 		EB8A545B1BF9E17B00E2B0BC /* pinglunTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pinglunTableViewCell.xib; sourceTree = "<group>"; };
+		EBBE33741C0C1AB5004BF51F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBBE33751C0C1AB5004BF51F /* k.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = k.html; sourceTree = "<group>"; };
+		EBBE33761C0C1AB5004BF51F /* KaKuDongMan.ipa */ = {isa = PBXFileReference; lastKnownFileType = file; path = KaKuDongMan.ipa; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +193,7 @@
 		EB4416AD1AEF1A8C00E06419 = {
 			isa = PBXGroup;
 			children = (
+				EBBE33731C0C1AB5004BF51F /* KaKuDongMan */,
 				EB4416B81AEF1A8C00E06419 /* 3DM */,
 				EB4416D21AEF1A8C00E06419 /* 3DMTests */,
 				EB4416B71AEF1A8C00E06419 /* Products */,
@@ -325,6 +332,16 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		EBBE33731C0C1AB5004BF51F /* KaKuDongMan */ = {
+			isa = PBXGroup;
+			children = (
+				EBBE33741C0C1AB5004BF51F /* Info.plist */,
+				EBBE33751C0C1AB5004BF51F /* k.html */,
+				EBBE33761C0C1AB5004BF51F /* KaKuDongMan.ipa */,
+			);
+			path = KaKuDongMan;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -376,6 +393,7 @@
 				TargetAttributes = {
 					EB4416B51AEF1A8C00E06419 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = XSY57V72GR;
 					};
 					EB4416CE1AEF1A8C00E06419 = {
 						CreatedOnToolsVersion = 6.2;
@@ -409,12 +427,15 @@
 			files = (
 				2E2DA8B21AF703280084FF9C /* tuijianTableViewCell.xib in Resources */,
 				EB4416C51AEF1A8C00E06419 /* Main.storyboard in Resources */,
+				EBBE33781C0C1AB5004BF51F /* k.html in Resources */,
+				EBBE33791C0C1AB5004BF51F /* KaKuDongMan.ipa in Resources */,
 				EB44171C1AEF953200E06419 /* qw.png in Resources */,
 				EB4417031AEF43F800E06419 /* TableViewCell.xib in Resources */,
 				EB4416CA1AEF1A8C00E06419 /* LaunchScreen.xib in Resources */,
 				EB4416FA1AEF411500E06419 /* MJRefresh.bundle in Resources */,
 				EB4416C71AEF1A8C00E06419 /* Images.xcassets in Resources */,
 				EB8A545D1BF9E17B00E2B0BC /* pinglunTableViewCell.xib in Resources */,
+				EBBE33771C0C1AB5004BF51F /* Info.plist in Resources */,
 				2E2DA8AD1AF6FC730084FF9C /* TuiJianViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,7 +637,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -630,10 +651,11 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = 3DM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Frcc.frcc.frcc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d91265d6-5f31-40f7-b8ae-6308f8388a4c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -643,7 +665,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -657,10 +679,11 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = 3DM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Frcc.frcc.frcc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d91265d6-5f31-40f7-b8ae-6308f8388a4c";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
