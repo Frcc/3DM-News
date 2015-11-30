@@ -69,7 +69,7 @@ static UIAlertView *av=nil;
         self.page=1;
     }
     
-    self.navigationItem.rightBarButtonItem=nil;
+//    self.navigationItem.rightBarButtonItem=nil;
     self.title = [NSString stringWithFormat:@"第%d页",self.page];
     [self.view addSubview:self.ai];
     
