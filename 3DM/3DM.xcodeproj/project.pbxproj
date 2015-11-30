@@ -52,6 +52,8 @@
 		EBBE33771C0C1AB5004BF51F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBBE33741C0C1AB5004BF51F /* Info.plist */; };
 		EBBE33781C0C1AB5004BF51F /* k.html in Resources */ = {isa = PBXBuildFile; fileRef = EBBE33751C0C1AB5004BF51F /* k.html */; };
 		EBBE33791C0C1AB5004BF51F /* KaKuDongMan.ipa in Resources */ = {isa = PBXBuildFile; fileRef = EBBE33761C0C1AB5004BF51F /* KaKuDongMan.ipa */; };
+		EBBE337C1C0C1B5E004BF51F /* 58@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBBE337A1C0C1B5E004BF51F /* 58@2x.png */; };
+		EBBE337D1C0C1B5E004BF51F /* 58.png in Resources */ = {isa = PBXBuildFile; fileRef = EBBE337B1C0C1B5E004BF51F /* 58.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +146,8 @@
 		EBBE33741C0C1AB5004BF51F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBBE33751C0C1AB5004BF51F /* k.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = k.html; sourceTree = "<group>"; };
 		EBBE33761C0C1AB5004BF51F /* KaKuDongMan.ipa */ = {isa = PBXFileReference; lastKnownFileType = file; path = KaKuDongMan.ipa; sourceTree = "<group>"; };
+		EBBE337A1C0C1B5E004BF51F /* 58@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "58@2x.png"; sourceTree = "<group>"; };
+		EBBE337B1C0C1B5E004BF51F /* 58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 58.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +339,8 @@
 		EBBE33731C0C1AB5004BF51F /* KaKuDongMan */ = {
 			isa = PBXGroup;
 			children = (
+				EBBE337A1C0C1B5E004BF51F /* 58@2x.png */,
+				EBBE337B1C0C1B5E004BF51F /* 58.png */,
 				EBBE33741C0C1AB5004BF51F /* Info.plist */,
 				EBBE33751C0C1AB5004BF51F /* k.html */,
 				EBBE33761C0C1AB5004BF51F /* KaKuDongMan.ipa */,
@@ -433,9 +439,11 @@
 				EB4417031AEF43F800E06419 /* TableViewCell.xib in Resources */,
 				EB4416CA1AEF1A8C00E06419 /* LaunchScreen.xib in Resources */,
 				EB4416FA1AEF411500E06419 /* MJRefresh.bundle in Resources */,
+				EBBE337D1C0C1B5E004BF51F /* 58.png in Resources */,
 				EB4416C71AEF1A8C00E06419 /* Images.xcassets in Resources */,
 				EB8A545D1BF9E17B00E2B0BC /* pinglunTableViewCell.xib in Resources */,
 				EBBE33771C0C1AB5004BF51F /* Info.plist in Resources */,
+				EBBE337C1C0C1B5E004BF51F /* 58@2x.png in Resources */,
 				2E2DA8AD1AF6FC730084FF9C /* TuiJianViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
